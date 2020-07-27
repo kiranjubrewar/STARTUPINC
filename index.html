@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+  
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <title>website assignment</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+    />
+
+    
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,600italic,300italic,400italic,300,700italic,800italic,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="fonts/mdi/css/materialdesignicons.min.css"
+      media="all"
+      rel="stylesheet"
+    />
+
+    <!-- LOCAL -->
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/ >
+
+    <!-- HOSTED -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https:/cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+
+    <!-- LOCAL -->
+    <script src="scripts/pt.min.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/modal.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
+
+:root {
+  --color: #3c3163;
+  --transition-time: 0.5s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Open Sans';
+  background: #fafafa;
+}
+
+a {
+  color: inherit;
+}
+
+.cards-wrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  padding: 4rem;
+  margin: 0 auto;
+  width: max-content;
+}
+
+.card {
+  font-family: 'Heebo';
+  --bg-filter-opacity: 0.5;
+  background-image: linear-gradient(rgba(0,0,0,var(--bg-filter-opacity)),rgba(0,0,0,var(--bg-filter-opacity))), var(--bg-img);
+  height: 20em;
+  width: 15em;
+  font-size: 1.5em;
+  color: white;
+  border-radius: 1em;
+  padding: 1em;
+  /*margin: 2em;*/
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 5em -1em black;
+  transition: all, var(--transition-time);
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #ccc;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: rotate(0);
+}
+
+.card h1 {
+  margin: 0;
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
+.card p {
+  font-size: 0.75em;
+  font-family: 'Open Sans';
+  margin-top: 0.5em;
+  line-height: 2em;
+}
+
+.card .tags {
+  display: flex;
+}
+
+.card .tags .tag {
+  font-size: 0.75em;
+  background: rgba(255,255,255,0.5);
+  border-radius: 0.3rem;
+  padding: 0 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  transition: all, var(--transition-time);
+}
+
+.card:hover .tags .tag {
+  background: var(--color);
+  color: white;
+}
+
+.card .date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75em;
+  padding: 1em;
+  line-height: 1em;
+  opacity: .8;
+}
+
+.card:before, .card:after {
+  content: '';
+  transform: scale(0);
+  transform-origin: top left;
+  border-radius: 50%;
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  z-index: -5;
+  transition: all, var(--transition-time);
+  transition-timing-function: ease-in-out;
+}
+
+.card:before {
+  background: #ddd;
+  width: 250%;
+  height: 250%;
+}
+
+.card:after {
+  background: white;
+  width: 200%;
+  height: 200%;
+}
+
+.card:hover {
+  color: var(--color);
+}
+
+.card:hover:before, .card:hover:after {
+  transform: scale(1);
+}
+
+.card-grid-space .num {
+  font-size: 3em;
+  margin-bottom: 1.2rem;
+  margin-left: 1rem;
+}
+
+.info {
+  font-size: 1.2em;
+  display: flex;
+  padding: 1em 3em;
+  height: 3em;
+}
+
+.info img {
+  height: 3em;
+  margin-right: 0.5em;
+}
+
+.info h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1285px) {
+  .cards-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cards-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .info {
+    justify-content: center;
+  }
+  .card-grid-space .num {
+    /margin-left: 0;
+    /text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cards-wrapper {
+    padding: 4rem 2rem;
+  }
+  .card {
+    max-width: calc(100vw - 4rem);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .info {
+    display: block;
+    text-align: center;
+  }
+  .info h1 {
+    margin: 0;
+  }
+}
+    </style>
+   <style>
+    .contact-title{
+      margin-top: 100px;
+      color:#333;
+      text-transform: uppercase;
+      transition: all 3s ease-in-out;
+  }
+  .contact-title h1{
+      font-size: 32px;
+      line-height: 10px;
+  
+  }
+  .contact-title h2{
+      font-size: 16px;
+  }
+  form{
+  margin-top: 50px;
+  transition: all 3s ease-in-out;
+  }
+  .form-control{
+      width: 600px;
+      background:transparent;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid gray;
+      color: #333;
+      font-size: 18px;
+      margin-bottom: 10px;
+  }
+  input{
+      height: 45px;
+  }
+  form .submit{
+      background:#ff5722;
+      border-color: transparent;
+      color: #333;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      height: 50px;
+      margin-top: 20px;
+  }
+  form .submit:hover{
+      background-color: #f44336;
+      cursor: pointer;
+  }
+  
+   </style>
+  </head>
+  <body>
+    <div class="overflow-wrap">
+      <!-- nav -->
+      <div class="modal-wrap flex">
+        <div class="mask"></div>
+        <div class="modal" id="modal">
+          <div class="carousel-wrap">
+            <div class="window">
+              <div id="carousel">
+                <div class="slide"></div>
+                <div class="slide"></div>
+                <div class="slide"></div>
+              </div>
+              <i class="mdi mdi-chevron-left" id="prev"></i>
+              <i class="mdi mdi-chevron-right" id="next"></i>
+            </div>
+          </div>
+          <div class="info-box">
+            <div class="title"></div>
+            <div class="tag"></div>
+            <div class="detail"></div>
+            <a href="#" target="_blank"
+              ><div class="button">
+                <i class="mdi mdi-open-in-new"></i>view site
+              </div></a
+            >
+          </div>
+          <i class="close mdi mdi-close"></i>
+        </div>
+      </div>
+
+      <section id="home" class="flex height-fix">
+        <div id="pt" class="canvas"></div>
+        <div class="flex">
+          <div class="text">
+            Hello, I'm <span class="highlight">Jubre Kiran</span>.
+            <br />
+            I'm a full-stack web developer.
+          </div>
+
+          <div class="button page-link" dest="about">
+            About <i class="mdi mdi-arrow-right"></i>
+          </div>
+
+          <nav class="flex">
+            <div class="link-wrap">
+              <div class="active page-link" dest="home">home</div>
+              <div class="page-link" dest="about">about</div>
+              <div class="page-link" dest="portfolio">portfolio</div>
+              <div class="page-link" dest="blog">blog</div>
+              <div class="page-link" dest="contact">contact</div>
+            </div>
+            <i class="mdi mdi-menu"></i>
+          </nav>
+        </div>
+      </section>
+
+      
+      <section id="about">
+        <div class="container flex">
+          <div class="header waypoint" data-animation="slide-in-left">
+            ABOUT
+          </div>
+          <div
+            class="header-bar waypoint"
+            data-animation="slide-in-left"
+            data-delay=".5s"
+          ></div>
+
+          
+
+          <div class="skills-wrapper flex row-gt-sm">
+            <div
+              class="flex flex-50-gt-sm waypoint"
+              data-animation="slide-in-left"
+            >
+              <img src="img/kittu1.jpg" class="me" />
+              
+              <div class="label bold">Jubre Kiran</div>
+              <div>
+               <h3> iam a web devloper and i am looking for a intren ship</h3>
+               <p>i am a hardworker and work effectivly</p>
+                
+              </div>
+            </div>
+
+            <div
+              class="flex flex-50-gt-sm waypoint bars-wrap"
+              data-animation="slide-in-right"
+            >
+              <div class="bar flex">
+                <div class="bar fill" style="width:90%">
+                  <div class="tag bold flex">HTML</div>
+                </div>
+                <span>90%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:90%">
+                  <div class="tag bold flex">CSS</div>
+                </div>
+                <span>90%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:80%">
+                  <div class="tag bold flex">JavaScript</div>
+                </div>
+                <span>70%</span>
+              </div>
+              <div class="bar flex">
+                <div class="bar fill" style="width:80%">
+                  <div class="tag bold flex">PHP</div>
+                </div>
+                <span>70%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:80%">
+                  <div class="tag bold flex">Angular</div>
+                </div>
+                <span>40%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:50%">
+                  <div class="tag bold flex">Machine leaning</div>
+                </div>
+                <span>80%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:65%">
+                  <div class="tag bold flex">AI</div>
+                </div>
+                <span>80%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:65%">
+                  <div class="tag bold flex">python</div>
+                </div>
+                <span>90%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:50%">
+                  <div class="tag bold flex">C</div>
+                </div>
+                <span>60%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:60%">
+                  <div class="tag bold flex">JAVA</div>
+                </div>
+                <span>50%</span>
+              </div>
+
+              <div class="bar flex">
+                <div class="bar fill" style="width:50%">
+                  <div class="tag bold flex">Sketch</div>
+                </div>
+                <span>50%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section class="flex" id="portfolio">
+        <div class="header waypoint" data-animation="slide-in-right">
+          PROJECTS
+        </div>
+        <div
+          class="header-bar waypoint"
+          data-animation="slide-in-right"
+          data-delay=".3s"
+        ></div>
+
+        <div class="filter-wrap waypoint" data-animation="fade-in">
+          <div class="flex row">
+            <div class="filter" data-filter="all">ALL</div>
+            <div class="filter" data-filter=".rails">HTML</div>
+            <div class="filter" data-filter=".react">CSS</div>
+            <div class="filter" data-filter=".js">JAVASCRIPT</div>
+          </div>
+          <div class="float-bar">
+            <div class="flex row">
+              <div class="filter" data-filter="all">ALL</div>
+              <div class="filter" data-filter=".rails">HTML</div>
+              <div class="filter" data-filter=".react">CSS</div>
+              <div class="filter" data-filter=".js">JAVASCRIPT</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="gallery" class="container flex row wrap waypoint">
+          <div class="mix react" data-my-order="1">
+            <div>
+              <div class="card"></div>
+              <div class="text">
+                <div class="bold">project</div>
+                <span class="highlight">CSS</span>
+              </div>
+             <div class="button" id="ordering"><a href=https://github.com/kiranjubrewar?tab=repositories">LEARN MORE</a></div>
+            </div>
+          </div>
+
+         
+        
+
+          <div class="mix js" data-my-order="1">
+            <div>
+              <div class="card"></div>
+              <div class="text">
+                <div class="bold">my project</div>
+                <span class="highlight">JavaScript</span>
+              </div>
+              <div class="button" id="ordering"><a href=https://github.com/kiranjubrewar?tab=repositories">LEARN MORE</a></div>
+            </div>
+          </div>
+
+          <div class="mix rails" data-my-order="1">
+            <div>
+              <div class="card"></div>
+              <div class="text">
+                <div class="bold">my project</div>
+                <span class="highlight">HTML</span>
+              </div>
+              <div class="button" id="walker" href="https://github.com/kiranjubrewar?tab=repositories">LEARN MORE</div>
+            </div>
+          </div>
+
+      </section>
+
+      <!-- BLOG -->
+     <h1 style="color: black;">BLOG</h1>
+<section class="cards-wrapper">
+  <div class="card-grid-space">
+    
+    <a class="card" href="https://github.com/kiranjubrewar?tab=repositories" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
+      <div>
+        <h1>HTML Syntax</h1>
+        <p>The syntax of a language is how it works. How to actually write it. Learn HTML syntax…</p>
+        <div class="date">6 Oct 2017</div>
+        <div class="tags">
+          <div class="tag">HTML</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="card-grid-space">
+    
+    <a class="card" href="https://github.com/kiranjubrewar?tab=repositories" style="--bg-img: url('https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/basic-types-of-html-tags/cover.jpg')">
+      <div>
+        <h1>Basic types of HTML tags</h1>
+        <p>Learn about some of the most common HTML tags…</p>
+        <div class="date">9 Oct 2017</div>
+        <div class="tags">
+          <div class="tag">Css</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="card-grid-space">
+   
+    <a class="card" href="https://github.com/kiranjubrewar?tab=repositories" style="--bg-img: url('https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/links-images-about-file-paths/cover.jpg')">
+      <div>
+        <h1>Links, images and about file paths</h1>
+        <p>Learn how to use links and images along with file paths…</p>
+        <div class="date">14 Oct 2020</div>
+        <div class="tags">
+          <div class="tag">JavaScript</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+      <!-- CONTACT -->
+      <div class="contact-title">
+        <h1 style="color: black;">CONTACT</h1>
+        </div>
+        <div class="contact-form">
+            <form id="conatct-form" method="POST" action="">
+                <input name="name" type="text" class="form-control" placeholder="your name " required>
+                <br/>
+                <input name="email" type="email" class="form-control" placeholder="your email " required>
+                <br/>
+                <input name="text" type="textarea" class="form-control" placeholder="message " required>
+                <br/>
+                <input name="submit" type="submit" class="form-control submit" placeholder="submit " required>
+                <br/>
+                
+                
+    
+            </form>
+    
+        </div>
+
+        <footer style="margin-top: 50px;">
+          <i class="mdi mdi-chevron-double-up page-link" dest="home"></i>
+  
+          <div class="icon-wrap flex row">
+            <a href="#">
+              <div class="flex icon" id="icon-2">
+                <i class="mdi mdi-linkedin"></i>
+              </div>
+            </a>
+            <a href="#">
+              <div class="flex icon" id="icon-3">
+                <i class="mdi mdi-facebook"></i>
+              </div>
+            </a>
+            <a href="#">
+              <div class="flex icon" id="icon-4">
+                <i class="mdi mdi-instagram"></i>
+              </div>
+            </a>
+            <a href="#">
+              <div class="flex icon" id="icon-5">
+                <i class="mdi mdi-codepen"></i>
+              </div>
+            </a>
+          </div>
+          <div class="info-box">
+            <div class="footnote">
+              Jubre Kiran <span class="highlight">&copy;2020</span>
+            </div>
+          </div>
+        </footer>
+
+
+  </body>
+</html>
+
+<script src="scripts/canvas.js"></script>
